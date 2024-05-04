@@ -24,7 +24,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select * from SalesLT.Customer",
+						"sqlReaderQuery": {
+							"value": "@activity('get_metadata_parameter').output.value.src_sql",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -60,9 +63,12 @@
 						"referenceName": "ds_azr_storage_account",
 						"type": "DatasetReference",
 						"parameters": {
-							"fileName": "customer_details.csv",
+							"fileName": {
+								"value": "@activity('get_metadata_parameter').output.value.tgt_filename",
+								"type": "Expression"
+							},
 							"fileDir": {
-								"value": "@concat('customer_extract',formatDateTime(utcNow(),'yyyyMMdd'))",
+								"value": "@activity('get_metadata_parameter').output.value.tgt_folder",
 								"type": "Expression"
 							}
 						}
