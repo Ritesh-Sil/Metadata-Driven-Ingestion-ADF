@@ -51,7 +51,11 @@
 				"outputs": [
 					{
 						"referenceName": "ds_azr_storage_account",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"fileName": "Customer_details",
+							"fileDir": "Customer_extract"
+						}
 					}
 				]
 			}
