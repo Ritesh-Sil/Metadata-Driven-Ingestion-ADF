@@ -25,7 +25,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "@activity('get_metadata_parameter').output.value.src_sql",
+							"value": "@activity('get_metadata_parameter').output.firstRow.src_sql",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -64,11 +64,11 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"fileName": {
-								"value": "@activity('get_metadata_parameter').output.value.tgt_filename",
+								"value": "@activity('get_metadata_parameter').output.firstRow.tgt_filename",
 								"type": "Expression"
 							},
 							"fileDir": {
-								"value": "@activity('get_metadata_parameter').output.value.tgt_folder",
+								"value": "@activity('get_metadata_parameter').output.firstRow.tgt_folder",
 								"type": "Expression"
 							}
 						}
@@ -98,7 +98,7 @@
 						"referenceName": "ds_generic_sql_db",
 						"type": "DatasetReference"
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			}
 		],
