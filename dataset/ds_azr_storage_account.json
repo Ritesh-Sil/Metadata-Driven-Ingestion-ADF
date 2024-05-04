@@ -10,12 +10,14 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"folderPath": "extract",
 				"fileSystem": "landing"
 			},
 			"columnDelimiter": ",",
+			"encodingName": "UTF-8 without BOM",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
-			"quoteChar": "\""
+			"quoteChar": "'"
 		},
 		"schema": []
 	}
