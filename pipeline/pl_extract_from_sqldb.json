@@ -84,7 +84,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select * from [config].[job_task_parameters] where job = 'load_customer'\nand task = 'pl_extract_from_sqldb'",
+						"sqlReaderQuery": "SELECT src_sql,\n       tgt_folder,\n       tgt_filename\nFROM   (SELECT job,\n               task,\n               parameter,\n               value,\n               active\n        FROM   [config].[job_task_parameters]\n        WHERE  job = 'load_customer'\n               AND task = 'pl_extract_from_sqldb') AS n\n       PIVOT ( Min(value)\n             FOR parameter IN (src_sql,\n                               tgt_folder,\n                               tgt_filename) ) AS p; ",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
