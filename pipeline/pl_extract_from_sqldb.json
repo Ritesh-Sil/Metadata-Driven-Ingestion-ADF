@@ -53,8 +53,11 @@
 						"referenceName": "ds_azr_storage_account",
 						"type": "DatasetReference",
 						"parameters": {
-							"fileName": "Customer_details",
-							"fileDir": "Customer_extract"
+							"fileName": "customer_details.csv",
+							"fileDir": {
+								"value": "@concat('customer_extract',formatDateTime(utcNow(),'yyyyMMdd'))",
+								"type": "Expression"
+							}
 						}
 					}
 				]
