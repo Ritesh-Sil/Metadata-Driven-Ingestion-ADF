@@ -1,0 +1,36 @@
+{
+	"name": "pl_test_expression_language",
+	"properties": {
+		"description": "Test the expression language",
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Var1",
+					"value": {
+						"value": "@concat(formatDateTime(utcnow(),'yyyy'),'/',formatDateTime(utcnow(),'mm'),'/',formatDateTime(utcnow(),'dd'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"Var1": {
+				"type": "String"
+			},
+			"var2": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-04-27T06:55:45Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

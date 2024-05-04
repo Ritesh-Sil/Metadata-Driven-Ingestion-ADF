@@ -1,0 +1,9 @@
+{
+	"name": "azrdatafactoryritesh",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "87e22298-7d78-4876-949e-4f3e6aa2e466",
+		"tenantId": "00b3f6df-02af-4022-b5cb-a396aafd0023"
+	}
+}

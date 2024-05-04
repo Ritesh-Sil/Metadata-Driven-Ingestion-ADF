@@ -1,0 +1,23 @@
+{
+	"name": "ds_raw_parquet_store",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blobstorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Ingestion/Parquet"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "raw"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

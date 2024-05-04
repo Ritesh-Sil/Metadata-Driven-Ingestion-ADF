@@ -1,0 +1,45 @@
+{
+	"name": "pl_expression_language_test",
+	"properties": {
+		"activities": [
+			{
+				"name": "Expr Test",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "var1",
+					"value": "gbfb"
+				}
+			},
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Expr Test",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 30
+				}
+			}
+		],
+		"variables": {
+			"var1": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-04-27T10:41:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

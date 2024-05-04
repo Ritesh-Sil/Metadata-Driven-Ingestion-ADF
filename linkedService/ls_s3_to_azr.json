@@ -1,0 +1,28 @@
+{
+	"name": "ls_s3_to_azr",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AmazonS3",
+		"typeProperties": {
+			"serviceUrl": "https://s3.amazonaws.com",
+			"accessKeyId": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_kv_s3_to_azr",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "s3-azr-integration-access-key"
+			},
+			"secretAccessKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_kv_s3_to_azr",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "s3-azr-integration-secret-access-key"
+			},
+			"authenticationType": "AccessKey"
+		}
+	}
+}
