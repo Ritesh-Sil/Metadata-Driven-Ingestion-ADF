@@ -1,0 +1,46 @@
+{
+	"name": "ds_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "sourcefiles"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer"
+				},
+				"name": {
+					"type": "string"
+				},
+				"position": {
+					"type": "string"
+				},
+				"salary": {
+					"type": "integer"
+				},
+				"country": {
+					"type": "string"
+				},
+				"population": {
+					"type": "integer"
+				},
+				"price": {
+					"type": "number"
+				},
+				"category": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
