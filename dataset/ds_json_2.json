@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"folderPath": {
-					"value": "@concat('json_files', formatDateTime(utcnow(),'yyyyMMdd'))",
+					"value": "@concat('json_files_2', formatDateTime(utcnow(),'yyyyMMdd'))",
 					"type": "Expression"
 				},
 				"container": "destfiles"
