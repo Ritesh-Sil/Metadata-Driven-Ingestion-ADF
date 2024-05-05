@@ -68,7 +68,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Filter1').output.name",
+						"value": "@activity('Filter1').output.Value",
 						"type": "Expression"
 					},
 					"batchCount": 3,
@@ -126,7 +126,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"fileName": {
-											"value": "@item()",
+											"value": "@item().name",
 											"type": "Expression"
 										}
 									}
