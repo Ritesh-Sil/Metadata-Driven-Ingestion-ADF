@@ -1,0 +1,22 @@
+{
+	"name": "ds_json_2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@concat('json_files', formatDateTime(utcnow(),'yyyyMMdd'))",
+					"type": "Expression"
+				},
+				"container": "destfiles"
+			}
+		},
+		"schema": {}
+	}
+}
