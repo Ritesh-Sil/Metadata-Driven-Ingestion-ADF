@@ -21,12 +21,30 @@
 							"type": "SnowflakeExportCopyCommand"
 						}
 					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "ds_snowflake",
 						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"fileName": "vdfbd"
+						}
 					}
 				]
 			}
