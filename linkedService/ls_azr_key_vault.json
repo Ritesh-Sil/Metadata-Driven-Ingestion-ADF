@@ -1,0 +1,10 @@
+{
+	"name": "ls_azr_key_vault",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://myazrkeyvault1.vault.azure.net/"
+		}
+	}
+}

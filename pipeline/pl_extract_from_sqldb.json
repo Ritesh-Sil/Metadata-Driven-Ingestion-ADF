@@ -1,0 +1,107 @@
+{
+	"name": "pl_extract_from_sqldb",
+	"properties": {
+		"activities": [
+			{
+				"name": "extract_data_from_sqldb",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "get_metadata_parameter",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "@activity('get_metadata_parameter').output.firstRow",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".csv"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_generic_sql_db",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_azr_storage_account",
+						"type": "DatasetReference",
+						"parameters": {
+							"fileName": {
+								"value": "@activity('get_metadata_parameter').output.firstRow.tgt_filename",
+								"type": "Expression"
+							},
+							"fileDir": {
+								"value": "@activity('get_metadata_parameter').output.firstRow.tgt_folder",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "get_metadata_parameter",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT src_sql,\n       tgt_folder,\n       tgt_filename\nFROM   (SELECT job,\n               task,\n               parameter,\n               value,\n               active\n        FROM   [config].[job_task_parameters]\n        WHERE  job = 'load_customer'\n               AND task = 'pl_extract_from_sqldb') AS n\n       PIVOT ( Min(value)\n             FOR parameter IN (src_sql,\n                               tgt_folder,\n                               tgt_filename) ) AS p; ",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_generic_sql_db",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": true
+				}
+			}
+		],
+		"annotations": []
+	}
+}

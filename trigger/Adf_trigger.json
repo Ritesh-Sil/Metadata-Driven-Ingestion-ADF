@@ -1,0 +1,25 @@
+{
+	"name": "Adf_trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_extract_from_sqldb",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 10,
+				"startTime": "2024-05-08T01:59:00",
+				"endTime": "2024-05-09T02:30:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
